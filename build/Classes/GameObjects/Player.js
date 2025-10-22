@@ -13,49 +13,31 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Assets } from "./Assets.js";
-var GameObject = /** @class */ (function () {
-    function GameObject(game) {
-        this.position = {
-            x: 0,
-            y: 0
-        };
-        this.image = Assets.getDefaultImage();
-        this.game = game;
-        this.start();
-    }
-    GameObject.prototype.start = function () { };
-    // Getter d'image et de position
-    GameObject.prototype.getImage = function () {
-        return this.image;
-    };
-    GameObject.prototype.getPosition = function () {
-        return this.position;
-    };
-    GameObject.prototype.getGame = function () {
-        return this.game;
-    };
-    GameObject.prototype.setImage = function (image) {
-        this.image = image;
-    };
-    GameObject.prototype.setPosition = function (position) {
-        this.position = position;
-    };
-    return GameObject;
-}());
-export { GameObject };
+import { Assets } from "../Assets.js";
+import { GameObject } from "./GameObjet.js";
+import { Input } from "../Input.js";
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.speed = 10;
+        return _this;
     }
     Player.prototype.start = function () {
         this.setImage(Assets.getPlayerImage());
-        // Codez ici ...
         this.setPosition({
             x: this.getGame().CANVAS_WIDTH / 2,
             y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 10
         });
+    };
+    Player.prototype.update = function () {
+        console.log(this.getPosition());
+        // Codez ici ...
+        this.setPosition({
+            x: this.getPosition().x += this.speed * Input.getAxisX(),
+            y: this.getPosition().y
+        });
+        console.log(Input.getAxisX());
     };
     return Player;
 }(GameObject));
