@@ -16,11 +16,14 @@ var __extends = (this && this.__extends) || (function () {
 import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObjet.js";
 import { Input } from "../Input.js";
+import { Laser } from "./Laser.js";
 var Player = /** @class */ (function (_super) {
     __extends(Player, _super);
     function Player() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.speed = 10;
+        _this.lastShootTime = Date.now();
+        _this.shootInterval_ms = 200;
         return _this;
     }
     Player.prototype.start = function () {
@@ -31,13 +34,18 @@ var Player = /** @class */ (function (_super) {
         });
     };
     Player.prototype.update = function () {
-        console.log(this.getPosition());
+        // console.log(this.getPosition());
         // Codez ici ...
         this.setPosition({
             x: this.getPosition().x += this.speed * Input.getAxisX(),
             y: this.getPosition().y
         });
-        console.log(Input.getAxisX());
+        //  console.log(Input.getAxisX());
+        if (Input.getIsShooting() &&
+            ((Date.now() - this.lastShootTime) >= this.shootInterval_ms)) {
+            this.getGame().instanciate(new Laser(this.getGame()));
+            this.lastShootTime = Date.now();
+        }
     };
     return Player;
 }(GameObject));

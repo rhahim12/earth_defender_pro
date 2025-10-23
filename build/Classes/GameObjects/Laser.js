@@ -15,38 +15,41 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObjet.js";
-var Star = /** @class */ (function (_super) {
-    __extends(Star, _super);
-    function Star() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.speed = 1;
-        return _this;
+import { Alien } from "./Alien.js";
+var Laser = /** @class */ (function (_super) {
+    __extends(Laser, _super);
+    function Laser() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Star.prototype.start = function () {
+    Laser.prototype.start = function () {
         // Définissez l'image de l'alien
         // Codez ici ...
-        this.setImage(Assets.getStarImage());
+        this.setImage(Assets.getLaserImage());
         // Faites-le apparaître à une position aléatoire dans le canvas
         // Codez ici ...
         this.setPosition({
-            x: Math.random() * this.getGame().CANVAS_WIDTH,
-            y: Math.random() * this.getGame().CANVAS_HEIGHT / 4 - 50,
+            x: this.getGame().getPlayer().getPosition().x,
+            y: this.getGame().getPlayer().getPosition().y - this.getImage().height
         });
     };
-    Star.prototype.update = function () {
+    Laser.prototype.update = function () {
         // Faites avancer l'alien vers le bas du Canvas
         // Codez ici ...  
+        // console.log(this.getPosition());
+        // Codez ici ...
         this.setPosition({
             x: this.getPosition().x,
-            y: this.getPosition().y + 1,
+            y: this.getPosition().y += -1,
         });
-        if (this.getPosition().y > this.getGame().CANVAS_HEIGHT) {
-            this.setPosition({
-                x: this.getPosition().x,
-                y: 0
-            });
+        //  console.log(Input.getAxisX()); 
+    };
+    Laser.prototype.collide = function (other) {
+        if (other instanceof Alien) {
+            console.log("ola chica !");
+            this.getGame().destroy(other);
+            this.getGame().destroy(this);
         }
     };
-    return Star;
+    return Laser;
 }(GameObject));
-export { Star };
+export { Laser };

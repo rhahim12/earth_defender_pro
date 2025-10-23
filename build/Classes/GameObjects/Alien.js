@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Assets } from "../Assets.js";
 import { GameObject } from "./GameObjet.js";
-import { Input } from "../Input.js";
+import { Player } from "./Player.js";
 var Alien = /** @class */ (function (_super) {
     __extends(Alien, _super);
     function Alien() {
@@ -37,13 +37,25 @@ var Alien = /** @class */ (function (_super) {
     Alien.prototype.update = function () {
         // Faites avancer l'alien vers le bas du Canvas
         // Codez ici ...  
-        console.log(this.getPosition());
+        // console.log(this.getPosition());
         // Codez ici ...
         this.setPosition({
             x: this.getPosition().x,
             y: this.getPosition().y += this.speed,
         });
-        console.log(Input.getAxisX());
+        //  console.log(Input.getAxisX()); 
+        if (this.getPosition().y > this.getGame().CANVAS_HEIGHT) {
+            this.setPosition({
+                x: this.getPosition().x,
+                y: 0
+            });
+        }
+    };
+    Alien.prototype.collide = function (other) {
+        if (other instanceof Player) {
+            console.log("Miam Miam !");
+            this.getGame().over();
+        }
     };
     return Alien;
 }(GameObject));

@@ -26,4 +26,20 @@ export class Assets{
         }
         return image;
     }
+     public static getStarImage() : HTMLImageElement{
+        // Codez ici ...
+         const image : HTMLImageElement = document.querySelector("img#asset_star");
+        if(image == null){
+            throw Error("No assets found");
+        }
+        return image;
+    }
+    public static getLaserImage() : HTMLImageElement{
+        // Codez ici ...
+         const image : HTMLImageElement = document.querySelector("img#asset_laser");
+        if(image == null){
+            throw Error("No assets found");
+        }
+        return image;
+    }
 }

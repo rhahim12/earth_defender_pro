@@ -3,6 +3,12 @@ var Input = /** @class */ (function () {
     }
     // +
     Input.getAxisX = function () {
+        return this.axisX;
+    };
+    Input.getIsShooting = function () {
+        return Input.isShooting;
+    };
+    Input.listen = function () {
         document.addEventListener("keydown", function (event) {
             switch (event.key) {
                 // Go right
@@ -14,6 +20,9 @@ var Input = /** @class */ (function () {
                 case "q":
                 case "Q":
                     Input.axisX = -1;
+                    break;
+                case " ":
+                    Input.isShooting = true;
                     break;
                 default:
                     break;
@@ -29,13 +38,19 @@ var Input = /** @class */ (function () {
                 case "Q":
                     Input.axisX = 0;
                     break;
+                case " ":
+                    Input.isShooting = true;
+                    break;
                 default:
                     break;
             }
         });
-        return this.axisX;
+        // RETOURNE this.axisX dans la method getAxisX plutot héhé
+        // return this.axisX;
     };
     Input.axisX = 0;
+    Input.axisY = 0;
+    Input.isShooting = false;
     return Input;
 }());
 export { Input };

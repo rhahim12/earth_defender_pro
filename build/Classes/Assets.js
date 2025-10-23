@@ -25,6 +25,22 @@ var Assets = /** @class */ (function () {
         }
         return image;
     };
+    Assets.getStarImage = function () {
+        // Codez ici ...
+        var image = document.querySelector("img#asset_star");
+        if (image == null) {
+            throw Error("No assets found");
+        }
+        return image;
+    };
+    Assets.getLaserImage = function () {
+        // Codez ici ...
+        var image = document.querySelector("img#asset_laser");
+        if (image == null) {
+            throw Error("No assets found");
+        }
+        return image;
+    };
     return Assets;
 }());
 export { Assets };

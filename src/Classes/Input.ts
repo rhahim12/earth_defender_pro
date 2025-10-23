@@ -1,8 +1,20 @@
-export class Input{
-    private static axisX : Direction = 0;
+export class Input {
+    private static axisX: Direction = 0;
+    private static axisY: Direction = 0;
+    private static isShooting: boolean = false;
     // +
-    public static getAxisX() : Direction{
-         document.addEventListener("keydown",(event)=>{
+
+    public static getAxisX(): Direction {
+        return this.axisX;
+    }
+
+
+    public static getIsShooting(): boolean {
+        return Input.isShooting;
+    }
+
+    public static listen() {
+        document.addEventListener("keydown", (event) => {
             switch (event.key) {
                 // Go right
                 case "d":
@@ -14,13 +26,16 @@ export class Input{
                 case "Q":
                     Input.axisX = -1;
                     break;
+                case " ":
+                    Input.isShooting = true;
+                    break;
                 default:
                     break;
             }
         });
 
         // Key Realeased
-        document.addEventListener("keyup",(event)=>{
+        document.addEventListener("keyup", (event) => {
             switch (event.key) {
                 // Player Stops
                 case "d":
@@ -28,13 +43,26 @@ export class Input{
                 case "q":
                 case "Q":
                     Input.axisX = 0;
-                break;
+                    break;
+                case " ":
+                    Input.isShooting = true;
+                    break;
                 default:
                     break;
+
             }
         });
-    
-        return this.axisX;
+
+        // RETOURNE this.axisX dans la method getAxisX plutot héhé
+        // return this.axisX;
+
+
     }
+
+
+
+
 }
+
+
 export type Direction = 0 | 1 | -1;
