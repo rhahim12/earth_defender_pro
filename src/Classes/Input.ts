@@ -45,7 +45,7 @@ export class Input {
                     Input.axisX = 0;
                     break;
                 case " ":
-                    Input.isShooting = true;
+                    Input.isShooting = false;
                     break;
                 default:
                     break;
@@ -54,7 +54,7 @@ export class Input {
         });
 
         // RETOURNE this.axisX dans la method getAxisX plutot héhé
-        // return this.axisX;
+        
 
 
     }

@@ -9,7 +9,7 @@ var Game = /** @class */ (function () {
         this.CANVAS_WIDTH = 900;
         this.CANVAS_HEIGHT = 600;
         this.gameObjects = [];
-        this.nbAliens = 10;
+        this.nbAliens = 2;
         this.nbStar = 100;
         this.nbLaser = 1;
         // Init Game canvas
@@ -35,9 +35,6 @@ var Game = /** @class */ (function () {
         this.player = new Player(this);
         this.draw(this.player);
         this.instanciate(this.player);
-        // ++ Instanciation de l'alien
-        this.alien = new Alien(this);
-        this.draw(this.alien);
         for (var i = 0; i < this.nbAliens; i++) {
             this.instanciate(new Alien(this));
         }
@@ -75,8 +72,6 @@ var Game = /** @class */ (function () {
             _this.draw(_this.player);
             // Je mets à jour le joueur
             _this.player.callUpdate();
-            _this.alien.callUpdate();
-            _this.draw(_this.alien);
             _this.gameObjects.forEach(function (go) {
                 go.callUpdate();
                 _this.draw(go);

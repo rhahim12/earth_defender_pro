@@ -26,9 +26,8 @@ export class Game {
 
 
     private player: Player;
-    private alien: Alien;
     private gameObjects: GameObject[] = [];
-    private nbAliens: number = 10;
+    private nbAliens: number = 2;
     private nbStar: number = 100;
     private star: Star;
      private laser: Laser;
@@ -57,9 +56,6 @@ export class Game {
 
         this.instanciate(this.player);
 
-        // ++ Instanciation de l'alien
-        this.alien = new Alien(this);
-        this.draw(this.alien);
 
 
 
@@ -120,8 +116,6 @@ export class Game {
 
 
 
-            this.alien.callUpdate();
-            this.draw(this.alien);
 
             this.gameObjects.forEach(go => {
                 go.callUpdate();

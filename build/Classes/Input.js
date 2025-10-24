@@ -39,14 +39,13 @@ var Input = /** @class */ (function () {
                     Input.axisX = 0;
                     break;
                 case " ":
-                    Input.isShooting = true;
+                    Input.isShooting = false;
                     break;
                 default:
                     break;
             }
         });
         // RETOURNE this.axisX dans la method getAxisX plutot héhé
-        // return this.axisX;
     };
     Input.axisX = 0;
     Input.axisY = 0;
